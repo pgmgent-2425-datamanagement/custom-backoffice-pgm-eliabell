@@ -18,7 +18,7 @@
     </nav>
 
     <main>
-        <?= $content; ?>
+        <?= $content; ?> 
     </main>
     
     <footer>
