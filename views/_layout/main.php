@@ -8,13 +8,13 @@
     <link rel="stylesheet" href="/css/main.css?v=<?php if( $_ENV['DEV_MODE'] == "true" ) { echo time(); }; ?>">
 </head>
 <body>
-    <div class="brand">BrandName</div>
+    <div class="brand">bookstore</div>
 
     <nav>
         <a href="/">Home</a>
-        <a href="#">item 2</a>
-        <a href="#">item 3</a>
-        <a href="#">item 4</a>
+        <a href="catalog">Catalog</a>
+        <a href="catalog/add">add a new book</a>
+        <a href="#"></a>
     </nav>
 
     <main>

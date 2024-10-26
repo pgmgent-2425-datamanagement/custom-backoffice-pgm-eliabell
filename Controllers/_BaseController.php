@@ -42,7 +42,7 @@ class BaseController {
         }
     }
 
-    protected function redirect($url, $code = 302) {
+    public static function redirect($url, $code = 302) {
         header("Location: " . $url, true, $code);
         exit();
     }
