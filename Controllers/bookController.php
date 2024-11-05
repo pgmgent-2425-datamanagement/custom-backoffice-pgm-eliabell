@@ -10,7 +10,7 @@ class BookController extends BaseController {
 
         $search = $_GET['search'] ?? '';
         $books = Book::allBooks($search);
-        self::loadView('/books', [
+        self::loadView('/catalog', [
             'title' => 'Boekencatalogus',
             'books' => $books,
             'search' => $search

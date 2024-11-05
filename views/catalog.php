@@ -1,18 +1,20 @@
-<h1>Catalog</h1>
-
-<form method="GET">
-<label>
-    <p>search</p>
-<input type="text" name="search" placeholder="search here" value="<?= $search; ?>">
-</label>
+<h1 class="heading-1">Catalog</h1>
+<form method="GET" class="form-spacing">
+    <label class="label-block">
+        <p class="label-text">Search</p>
+        <input type="text" name="search" placeholder="Search here" value="<?= $search; ?>" class="input-field">
+    </label>
 </form>
-
-<?php foreach ($books as $book) : ?>
-    <article>
-        <p>hi</p>
-        <h2><?= $book->title; ?></h2>
-        <p><?= $book->datum; ?></p>
-        <p><?= $book->author; ?></p>
-        <a href="catalog/edit/<?= $book->id; ?>">edit</a>
-        <a href="catalog/delete/<?= $book->id; ?>">delete</a>
-    </article>
+<div class="grid-container grid-container-1-col grid-container-2-col grid-container-3-col">
+    <?php foreach ($books as $book) : ?>
+        <div class="card">
+            <h2 class="heading-2"><?= $book->title; ?></h2>
+            <p class="text-muted">Published Date: <?= $book->published_date; ?></p>
+            <p class="text-muted">Author: <?= $book->author; ?></p>
+            <div class="flex-container">
+                <a href="catalog/edit/<?= $book->id; ?>" class="text-blue">Edit</a>
+                <a href="catalog/delete/<?= $book->id; ?>" class="text-red">Delete</a>
+            </div>
+        </div>
+    <?php endforeach; ?>
+</div>

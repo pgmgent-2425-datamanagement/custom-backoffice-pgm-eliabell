@@ -7,7 +7,11 @@ class Book extends BaseModel
     protected function allBooks($search = '')
     {
         global $db;
-        $sql = "SELECT * FROM books WHERE title LIKE :search";
+        $sql = "SELECT * 
+FROM books 
+LEFT JOIN authors 
+-- INNER JOIN authors
+    ON books.author_id = authors.id  WHERE title LIKE :search";
 
         $pdo_statement = $db->prepare($sql);
         $pdo_statement->execute([':search' => '%' . $search . '%']);
