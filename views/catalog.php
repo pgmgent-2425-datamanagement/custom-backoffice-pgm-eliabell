@@ -10,7 +10,7 @@
         <div class="card">
             <h2 class="heading-2"><?= $book->title; ?></h2>
             <p class="text-muted">Published Date: <?= $book->published_date; ?></p>
-            <p class="text-muted">Author: <?= $book->author; ?></p>
+            <p class="text-muted">Author: <?= $book->first_name . ' ' . $book->last_name; ?></p>
             <div class="flex-container">
                 <a href="catalog/edit/<?= $book->id; ?>" class="text-blue">Edit</a>
                 <a href="catalog/delete/<?= $book->id; ?>" class="text-red">Delete</a>
