@@ -11,7 +11,11 @@ class Book extends BaseModel
 FROM books 
 LEFT JOIN authors 
 -- INNER JOIN authors
-    ON books.author_id = authors.id  WHERE title LIKE :search";
+    ON books.author_id = authors.id  
+    WHERE title LIKE :search
+    OR first_name LIKE :search
+    OR last_name LIKE :search
+    ";
 
         $pdo_statement = $db->prepare($sql);
         $pdo_statement->execute([':search' => '%' . $search . '%']);
@@ -22,13 +26,14 @@ LEFT JOIN authors
 
     public function save()
     {
-        $sql = "INSERT INTO books (title, published_date, id) VALUES (:title, :published_date, :id)"; 
+        $sql = "INSERT INTO books (title, published_date, id, imgpath) VALUES (:title, :published_date, :id, :imgpath)"; 
 
         $pdo_statement = $this->db->prepare($sql);
         $success = $pdo_statement->execute([
             ":title" => $this->title,
             ":published_date" => $this->published_date,
-            ":id" => $this->id
+            ":id" => $this->id,
+            ":imgpath" => $this->imgpath
         ]);
         return $success;
     }
@@ -41,6 +46,7 @@ LEFT JOIN authors
             ":title" => $this->title,
             ":published_date" => $this->published_date,
             ":id" => $id
+
         ]);
         return $success;
     }

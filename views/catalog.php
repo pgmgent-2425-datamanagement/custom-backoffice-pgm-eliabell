@@ -9,6 +9,7 @@
     <?php foreach ($books as $book) : ?>
         <div class="card">
             <h2 class="heading-2"><?= $book->title; ?></h2>
+            <img src="/images/<?= $book->imgpath; ?>.png" alt="<?= $book->title; ?>" class="img-fluid">
             <p class="text-muted">Published Date: <?= $book->published_date; ?></p>
             <p class="text-muted">Author: <?= $book->first_name . ' ' . $book->last_name; ?></p>
             <div class="flex-container">
