@@ -1,4 +1,5 @@
 <?php
+namespace App\Models;
 
 use App\Models\BaseModel;
 
@@ -40,11 +41,13 @@ LEFT JOIN authors
 
     public function edit($id)
     {
-        $sql = "UPDATE books SET title = :title, published_date = :published_date WHERE id = :id";
+        $sql = "UPDATE books SET title = :title, published_date = :published_date, first_name = :first_name, last_name = :last_name, WHERE id = :id";
         $pdo_statement = $this->db->prepare($sql);
         $success = $pdo_statement->execute([
             ":title" => $this->title,
             ":published_date" => $this->published_date,
+            ":first_name" => $this->first_name,
+            ":last_name" => $this->last_name,
             ":id" => $id
 
         ]);

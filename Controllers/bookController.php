@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use Book;
+use App\Models\Book;
 
 class BookController extends BaseController {
 
@@ -19,7 +19,7 @@ class BookController extends BaseController {
     // Verwijder een boek
     public static function delete ($id) {
         Book::deleteById($id);
-        self::redirect('/books');
+        self::redirect('/catalog');
     }
 
     // Detailweergave van een specifiek boek
