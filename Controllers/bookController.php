@@ -3,11 +3,12 @@
 namespace App\Controllers;
 
 use App\Models\Book;
+use App\Models\Author;
 
 class BookController extends BaseController {
 
-    public static function catalog () {
-
+    // Display the catalog of books
+    public static function catalog() {
         $search = $_GET['search'] ?? '';
         $books = Book::allBooks($search);
         self::loadView('/catalog', [
@@ -16,64 +17,65 @@ class BookController extends BaseController {
             'search' => $search
         ]);
     }
-    // Verwijder een boek
-    public static function delete ($id) {
+
+    // Delete a book
+    public static function delete($id) {
         Book::deleteById($id);
         self::redirect('/catalog');
     }
 
-    // Detailweergave van een specifiek boek
-    public static function detail ($id) {
+    // Display details of a specific book
+    public static function detail($id) {
         $book = Book::find($id);
-        
-        // Laad de view en geef het boek door
         self::loadView('/book', [
             'book' => $book
         ]);
     }
 
-    // Laad de pagina voor het toevoegen van een nieuw boek
-    public static function add () {
-        self::loadView('/form');
+    // Load the form for adding a new book
+    public static function add() {
+        $authors = Author::all(); // Fetch all authors for the dropdown
+        self::loadView('/form', [
+            'authors' => $authors
+        ]);
     }
 
-    // Sla een nieuw boek op
-    public static function save () {
+    // Save a new book
+    public static function save() {
         $book = new Book();
         $book->title = $_POST['title'];
         $book->author_id = $_POST['author_id'];
         $book->genre_id = $_POST['genre_id'];
         $book->publisher_id = $_POST['publisher_id'];
-        $book->publication_year = $_POST['publication_year'];
+        $book->published_date = $_POST['published_date'];
         $success = $book->save();
 
         if ($success) {
-            self::redirect('/books');
+            self::redirect('/catalog');
         } else {
             echo 'Er is iets misgegaan bij het opslaan van het boek';
         }
     }
 
-    // Laad de pagina voor het bewerken van een bestaand boek
-    public static function edit ($id) {
+    // Load the form for editing an existing book
+    public static function edit($id) {
         $book = Book::find($id);
+        // $authors = Author::find($id); // Fetch all authors for the dropdown
         self::loadView('/edit', [
-            'book' => $book
+            'book' => $book,
+            // 'authors' => $authors
         ]);
     }
 
-    // Update een bestaand boek
-    public static function update ($id) {
+    // Update an existing book
+    public static function update($id) {
         $book = Book::find($id);
         $book->title = $_POST['title'];
-        $book->author_id = $_POST['author_id'];
-        $book->genre_id = $_POST['genre_id'];
-        $book->publisher_id = $_POST['publisher_id'];
-        $book->publication_year = $_POST['publication_year'];
-        $success = $book->update($id);
+        $book->published_date = $_POST['published_date'];
 
+        $success = $book->update();
         if ($success) {
-            self::redirect('/books');
+            self::redirect('/catalog');
         } else {
             echo 'Er is iets misgegaan bij het updaten van het boek';
         }

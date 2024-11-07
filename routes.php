@@ -6,6 +6,8 @@ $router->get('/', 'HomeController@index');
 $router->get('/catalog', 'BookController@catalog');
 $router->get('/catalog/add', 'BookController@add');
 $router->get('/catalog/edit/{id}', 'BookController@edit');
+$router->post('/catalog/edit/{id}', 'BookController@update');
+
 $router->get('/catalog/delete/{id}', 'BookController@delete');
 $router->post('/catalog/save', 'BookController@save');
 $router->get('/catalog/detail/{id}', 'BookController@detail');
