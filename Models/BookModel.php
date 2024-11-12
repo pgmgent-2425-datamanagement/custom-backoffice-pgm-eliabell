@@ -22,19 +22,30 @@ LEFT JOIN genres ON books.genre_id = genres.id
 WHERE books.title LIKE :search
 OR authors.first_name LIKE :search
 OR authors.last_name LIKE :search
-OR genres.names LIKE :search;
-
-
-
-    ";
-
+OR genres.names LIKE :search";
         $pdo_statement = $db->prepare($sql);
         $pdo_statement->execute([':search' => '%' . $search . '%']);
         $db_items = $pdo_statement->fetchAll();
 
         return self::castToModel($db_items);
     }
-
+    public static function getTotalBooks()
+    {
+        global $db;
+        $sql = "SELECT COUNT(*) as total FROM books";
+        $pdo_statement = $db->prepare($sql);
+        $pdo_statement->execute();
+        $result = $pdo_statement->fetch();
+        return $result['total'];
+    }
+    public static function getTotalAuthors(){
+        global $db;
+        $sql = "SELECT COUNT(*) as total FROM books";
+        $pdo_statement = $db->prepare($sql);
+        $pdo_statement->execute();
+        $result = $pdo_statement->fetch();
+        return $result['total'];
+    }
     public function save()
     {
         $sql = "INSERT INTO books (title, published_date, id, imgpath, author_id, genre_id) VALUES (:title, :published_date, :id, :imgpath, :author_id, :genre_id)"; 

@@ -1,15 +1,18 @@
 <?php
-
 namespace App\Controllers;
 
-class HomeController extends BaseController {
+use App\Models\Book;
 
-    public static function index () {
+class HomeController extends BaseController {
+    public static function index() {
+        // Fetch the total number of books
+        $totalBooks = Book::getTotalBooks();
+        $totalAuthors = Book::getTotalAuthors();
 
         self::loadView('/home', [
-            'title' => 'Homepage'
-            
+            'title' => 'Homepage',
+            'totalBooks' => $totalBooks,
+            'totalAuthors' => $totalAuthors
         ]);
     }
-
 }

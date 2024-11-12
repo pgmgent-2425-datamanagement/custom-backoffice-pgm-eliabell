@@ -4,7 +4,7 @@ body {
     padding: 1rem;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.5;
-    background-color: rgb(75, 72, 72);
+    background-color: rgb(202, 195, 195);
 }
 img {
     max-width: 100%;
@@ -123,4 +123,29 @@ input[type="text"] {
 .img-fluid {
     max-width: 100%; /* w-full */
     height: auto; /* h-auto */
+}
+
+/* Navbar Styling */
+nav {
+    background-color: #333;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 1rem;
+    font-size: 1rem;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+nav .brand {
+    font-size: 1.5rem;
+    font-weight: bold;
 }

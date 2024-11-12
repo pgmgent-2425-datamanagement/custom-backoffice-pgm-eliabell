@@ -14,6 +14,7 @@ class BookController extends BaseController {
         $genre_id = $_GET['genre_id'] ?? null;
         $books = Book::allBooks($search, $genre_id);
         $genres = Genre::all(); // Fetch all genres
+        $authors = Author::all(); // Fetch all authors
         self::loadView('/catalog', [
             'title' => 'Boekencatalogus',
             'books' => $books,
@@ -41,6 +42,7 @@ class BookController extends BaseController {
     public static function add() {
         $authors = Author::all(); // Fetch all authors for the dropdown
         $genres = Genre::all(); // Fetch all genres for the dropdown
+
         self::loadView('/form', [
             'authors' => $authors,
             'genres' => $genres,
@@ -54,7 +56,23 @@ class BookController extends BaseController {
         $book->author_id = $_POST['author_id'];
         $book->genre_id = $_POST['genre_id'];
         $book->published_date = $_POST['published_date'];
-        $success = $book->save(); 
+
+        // Handle image upload
+        if (isset($_FILES['imgpath']) && $_FILES['imgpath']['error'] == 0) {
+            $uploadDir = __DIR__ . '/../public/images/';
+            $filename = basename($_FILES['imgpath']['name']);
+            $uploadFile = $uploadDir . $filename;
+            if (move_uploaded_file($_FILES['imgpath']['tmp_name'], $uploadFile)) {
+                $book->imgpath = $filename;
+            } else {
+                echo 'Er is iets misgegaan bij het uploaden van de afbeelding';
+                return;
+            }
+        } else {
+            $book->imgpath = null; // Set to null if no image is uploaded
+        }
+
+        $success = $book->save();
 
         if ($success) {
             self::redirect('/catalog');
