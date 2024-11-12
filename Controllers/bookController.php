@@ -4,17 +4,22 @@ namespace App\Controllers;
 
 use App\Models\Book;
 use App\Models\Author;
+use App\Models\Genre;
 
 class BookController extends BaseController {
 
     // Display the catalog of books
     public static function catalog() {
         $search = $_GET['search'] ?? '';
-        $books = Book::allBooks($search);
+        $genre_id = $_GET['genre_id'] ?? null;
+        $books = Book::allBooks($search, $genre_id);
+        $genres = Genre::all(); // Fetch all genres
         self::loadView('/catalog', [
             'title' => 'Boekencatalogus',
             'books' => $books,
-            'search' => $search
+            'search' => $search,
+            'genres' => $genres,
+            'selected_genre' => $genre_id
         ]);
     }
 
@@ -35,8 +40,10 @@ class BookController extends BaseController {
     // Load the form for adding a new book
     public static function add() {
         $authors = Author::all(); // Fetch all authors for the dropdown
+        $genres = Genre::all(); // Fetch all genres for the dropdown
         self::loadView('/form', [
-            'authors' => $authors
+            'authors' => $authors,
+            'genres' => $genres,
         ]);
     }
 
@@ -46,9 +53,8 @@ class BookController extends BaseController {
         $book->title = $_POST['title'];
         $book->author_id = $_POST['author_id'];
         $book->genre_id = $_POST['genre_id'];
-        $book->publisher_id = $_POST['publisher_id'];
         $book->published_date = $_POST['published_date'];
-        $success = $book->save();
+        $success = $book->save(); 
 
         if ($success) {
             self::redirect('/catalog');
@@ -60,10 +66,8 @@ class BookController extends BaseController {
     // Load the form for editing an existing book
     public static function edit($id) {
         $book = Book::find($id);
-        // $authors = Author::find($id); // Fetch all authors for the dropdown
         self::loadView('/edit', [
             'book' => $book,
-            // 'authors' => $authors
         ]);
     }
 

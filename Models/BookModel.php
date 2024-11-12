@@ -5,17 +5,27 @@ use App\Models\BaseModel;
 
 class Book extends BaseModel
 {
+    public $id;
+    public $title;
+    public $author_id;
+    public $genre_id;
+    public $published_date;
+    public $imgpath;
+
     protected function allBooks($search = '')
     {
         global $db;
-        $sql = "SELECT * 
-FROM books 
-LEFT JOIN authors 
--- INNER JOIN authors
-    ON books.author_id = authors.id  
-    WHERE title LIKE :search
-    OR first_name LIKE :search
-    OR last_name LIKE :search
+        $sql = "SELECT books.*, authors.*, genres.names AS genre_name
+FROM books
+LEFT JOIN authors ON books.author_id = authors.id
+LEFT JOIN genres ON books.genre_id = genres.id
+WHERE books.title LIKE :search
+OR authors.first_name LIKE :search
+OR authors.last_name LIKE :search
+OR genres.names LIKE :search;
+
+
+
     ";
 
         $pdo_statement = $db->prepare($sql);
@@ -27,12 +37,14 @@ LEFT JOIN authors
 
     public function save()
     {
-        $sql = "INSERT INTO books (title, published_date, id, imgpath) VALUES (:title, :published_date, :id, :imgpath)"; 
+        $sql = "INSERT INTO books (title, published_date, id, imgpath, author_id, genre_id) VALUES (:title, :published_date, :id, :imgpath, :author_id, :genre_id)"; 
 
         $pdo_statement = $this->db->prepare($sql);
         $success = $pdo_statement->execute([
             ":title" => $this->title,
             ":published_date" => $this->published_date,
+            ":author_id" => $this->author_id,
+            ":genre_id" => $this->genre_id,
             ":id" => $this->id,
             ":imgpath" => $this->imgpath
         ]);

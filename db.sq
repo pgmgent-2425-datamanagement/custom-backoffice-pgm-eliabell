@@ -1,0 +1,233 @@
+-- MariaDB dump 10.19  Distrib 10.11.8-MariaDB, for debian-linux-gnu (x86_64)
+--
+-- Host: localhost    Database: db
+-- ------------------------------------------------------
+-- Server version	10.11.8-MariaDB-ubu2204-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `authors`
+--
+
+DROP TABLE IF EXISTS `authors`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `authors` (
+  `id` int(11) NOT NULL,
+  `first_name` varchar(45) NOT NULL,
+  `last_name` varchar(45) NOT NULL,
+  `birthdate` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `authors`
+--
+
+LOCK TABLES `authors` WRITE;
+/*!40000 ALTER TABLE `authors` DISABLE KEYS */;
+INSERT INTO `authors` VALUES
+(1,'eliaz','bello medrano','2004-09-03'),
+(2,'Alice','Summers','1975-04-22'),
+(3,'James','Blackwood','1968-10-14'),
+(4,'Clara','Thompson','1980-03-05'),
+(5,'Daniel','West','1972-07-12'),
+(6,'Elena','Rivers','1983-02-28'),
+(7,'Michael','Hunter','1965-11-03'),
+(8,'Natalie','Blake','1990-09-15'),
+(9,'Oliver','Grant','1978-05-27'),
+(10,'Sophia','Bennett','1987-12-19'),
+(11,'Ethan','Knight','1973-06-14'),
+(12,'Mia','Collins','1985-03-23'),
+(13,'Jack','Morgan','1962-08-08'),
+(14,'Emma','Brooks','1976-01-17'),
+(15,'Henry','Fox','1982-11-29'),
+(16,'Chloe','Adams','1991-04-09'),
+(17,'Liam','Turner','1974-10-02'),
+(18,'Isabella','Reed','1980-07-13'),
+(19,'Benjamin','Greene','1969-02-25'),
+(20,'Grace','Porter','1979-06-04'),
+(21,'Samuel','Stone','1963-09-18'),
+(22,'Lily','Foster','1988-10-22'),
+(23,'William','Powell','1971-11-11'),
+(24,'Sophia','Martin','1984-08-20'),
+(25,'Jacob','Simmons','1977-01-30'),
+(26,'Charlotte','Hayes','1992-05-08'),
+(27,'Logan','Turner','1981-09-09'),
+(28,'Amelia','Reed','1967-03-15'),
+(29,'David','Butler','1989-07-07'),
+(30,'Lucy','Patterson','1986-12-06'),
+(31,'Evelyn','Walker','1975-05-02'),
+(32,'Ryan','Baker','1970-02-13'),
+(33,'Zoey','White','1993-09-24'),
+(34,'Nathan','Carter','1966-06-17'),
+(35,'Penelope','Harris','1982-02-05'),
+(36,'Alexander','Murphy','1979-03-29'),
+(37,'Scarlett','Brooks','1981-08-25'),
+(38,'Julian','Young','1973-04-07'),
+(39,'Victoria','Kelly','1968-12-17'),
+(40,'Sebastian','Morgan','1983-10-01'),
+(41,'Emily','Mitchell','1990-11-15'),
+(42,'Noah','Scott','1976-03-20'),
+(43,'Harper','James','1988-04-30'),
+(44,'Christopher','Diaz','1978-07-28'),
+(45,'Mila','Gonzalez','1984-01-12'),
+(46,'Josephine','Torres','1972-10-19'),
+(47,'Hudson','Barnes','1989-05-15'),
+(48,'Sarah','Evans','1980-06-03'),
+(49,'Maxwell','Perez','1991-08-19'),
+(50,'Hazel','Carter','1977-09-25');
+/*!40000 ALTER TABLE `authors` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `books`
+--
+
+DROP TABLE IF EXISTS `books`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `books` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `published_date` date DEFAULT NULL,
+  `author_id` int(11) DEFAULT NULL,
+  `imgpath` varchar(255) DEFAULT NULL,
+  `genre_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `books`
+--
+
+LOCK TABLES `books` WRITE;
+/*!40000 ALTER TABLE `books` DISABLE KEYS */;
+INSERT INTO `books` VALUES
+(1,'leven van een loser','2024-10-10',1,'levenvaneenloser',2),
+(3,'The Forgotten Kingdom ','2003-11-12',3,'levenvaneenloser',3),
+(11,'Rising Storm edited','2006-02-12',11,'levenvaneenloser',4),
+(12,'Realm of Shadows','1998-08-15',12,'levenvaneenloser',5),
+(13,'The Fallen City','2015-03-07',13,'levenvaneenloser',6),
+(14,'Journey to Oblivion','2002-05-19',14,'levenvaneenloser',7),
+(15,'Voices from Beyond','2018-01-11',15,'levenvaneenloser',8),
+(16,'Lost in Time','2016-09-22',16,'levenvaneenloser',9),
+(17,'Legacy of the Moon','2009-12-16',17,'levenvaneenloser',10),
+(18,'Secrets of the Deep','2011-11-03',18,'levenvaneenloser',2),
+(19,'The Celestial Mirror','2013-06-09',19,'levenvaneenloser',3),
+(20,'Twilight of the Gods','1997-02-05',20,'levenvaneenloser',4),
+(21,'Veil of the Unknown','2004-04-25',21,'levenvaneenloser',5),
+(22,'The Endless Night','2019-08-21',22,'levenvaneenloser',6),
+(23,'City of Illusions','2017-07-02',23,'levenvaneenloser',7),
+(24,'Winds of Despair','2000-01-29',24,'levenvaneenloser',8),
+(25,'Echo of Dreams','2008-03-15',25,'levenvaneenloser',9),
+(26,'Fading Lights','2013-05-05',26,'levenvaneenloser',10),
+(27,'The Crimson Tide','2012-10-10',27,'levenvaneenloser',11),
+(28,'Echoes of Destiny','2007-08-03',28,'levenvaneenloser',5),
+(29,'Silent Voices','2016-11-28',29,'levenvaneenloser',3),
+(30,'The Endless Maze','2001-02-14',30,'levenvaneenloser',4),
+(31,'Beyond the Stars','1996-07-21',31,'levenvaneenloser',5),
+(32,'The Last Dawn','2003-06-30',32,'levenvaneenloser',6),
+(33,'A New Beginning','2006-12-17',33,'levenvaneenloser',7),
+(34,'The Lost Realm','1999-11-26',34,'levenvaneenloser',8),
+(35,'Through the Mist','2014-02-11',35,'levenvaneenloser',9),
+(36,'Under a Broken Sky','2005-09-30',36,'levenvaneenloser',5),
+(37,'The Forgotten Path','2017-12-20',37,'levenvaneenloser',5),
+(38,'Silent Cry','2008-04-13',38,'levenvaneenloser',6),
+(39,'Into the Abyss','2001-10-17',39,'levenvaneenloser',5),
+(40,'The Golden Hour','2012-05-26',40,'levenvaneenloser',6),
+(41,'The Stolen Light','2015-08-30',41,'levenvaneenloser',5),
+(42,'Echoes in the Silence','2000-12-04',42,'levenvaneenloser',6),
+(43,'The Vanishing Sun','2009-09-12',43,'levenvaneenloser',5),
+(44,'Glimpses of Eternity','2010-06-08',44,'levenvaneenloser',6),
+(45,'Chasing Shadows','2003-03-24',45,'levenvaneenloser',4),
+(46,'Through Time and Space','1998-01-06',46,'levenvaneenloser',5),
+(47,'Rise of the Fallen','2004-07-17',47,'levenvaneenloser',8),
+(48,'Eternal Echoes','2011-08-14',48,'levenvaneenloser',5),
+(49,'Wanderers of the Void','2002-03-19',49,'levenvaneenloser',2),
+(50,'In the Shadow of Dreams','2018-11-30',50,'levenvaneenloser',3);
+/*!40000 ALTER TABLE `books` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `genres`
+--
+
+DROP TABLE IF EXISTS `genres`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `genres` (
+  `id` int(11) NOT NULL,
+  `names` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `genres`
+--
+
+LOCK TABLES `genres` WRITE;
+/*!40000 ALTER TABLE `genres` DISABLE KEYS */;
+INSERT INTO `genres` VALUES
+(2,'horror'),
+(3,'comedy'),
+(4,'fantasy'),
+(5,'action'),
+(6,'history'),
+(7,'educational '),
+(8,'mystery'),
+(9,'dystopian'),
+(10,'sci-fi'),
+(11,'other');
+/*!40000 ALTER TABLE `genres` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `publishers`
+--
+
+DROP TABLE IF EXISTS `publishers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `publishers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `country` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `publishers`
+--
+
+LOCK TABLES `publishers` WRITE;
+/*!40000 ALTER TABLE `publishers` DISABLE KEYS */;
+INSERT INTO `publishers` VALUES
+(1,'Prod. Eliaz','belgium');
+/*!40000 ALTER TABLE `publishers` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-11-12  9:36:58

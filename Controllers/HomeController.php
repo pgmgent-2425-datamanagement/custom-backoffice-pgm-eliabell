@@ -8,6 +8,7 @@ class HomeController extends BaseController {
 
         self::loadView('/home', [
             'title' => 'Homepage'
+            
         ]);
     }
 
